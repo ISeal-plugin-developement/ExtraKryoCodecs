@@ -1,4 +1,4 @@
-package dev.iseal.Codecs.Lodestone;
+package dev.iseal.ExtraKryoCodecs.Codecs.Lodestone;
 
 import com.esotericsoftware.kryo.kryo5.Kryo;
 import com.esotericsoftware.kryo.kryo5.Serializer;
@@ -6,6 +6,8 @@ import com.esotericsoftware.kryo.kryo5.io.Input;
 import com.esotericsoftware.kryo.kryo5.io.Output;
 import team.lodestar.lodestone.systems.easing.Easing;
 import team.lodestar.lodestone.systems.screenshake.ScreenshakeInstance;
+
+import static dev.iseal.ExtraKryoCodecs.ExtraKryoCodecs.debug;
 
 public class ScreenshakeSerializer extends Serializer<ScreenshakeInstance> {
     @Override
@@ -17,14 +19,16 @@ public class ScreenshakeSerializer extends Serializer<ScreenshakeInstance> {
         output.writeInt(screenshakeInstance.progress, false);
         output.writeString(screenshakeInstance.intensityCurveStartEasing.name);
         output.writeString(screenshakeInstance.intensityCurveEndEasing.name);
-        System.out.println("Wrote ScreenshakeInstance with data");
-        System.out.println("Duration: " + screenshakeInstance.duration);
-        System.out.println("Intensity1: " + screenshakeInstance.intensity1);
-        System.out.println("Intensity2: " + screenshakeInstance.intensity2);
-        System.out.println("Intensity3: " + screenshakeInstance.intensity3);
-        System.out.println("Progress: " + screenshakeInstance.progress);
-        System.out.println("IntensityCurveStartEasing: " + screenshakeInstance.intensityCurveStartEasing.name);
-        System.out.println("IntensityCurveEndEasing: " + screenshakeInstance.intensityCurveEndEasing.name);
+        if (debug) {
+            System.out.println("Serializing ScreenshakeInstance:");
+            System.out.println("Duration: " + screenshakeInstance.duration);
+            System.out.println("Intensity1: " + screenshakeInstance.intensity1);
+            System.out.println("Intensity2: " + screenshakeInstance.intensity2);
+            System.out.println("Intensity3: " + screenshakeInstance.intensity3);
+            System.out.println("Progress: " + screenshakeInstance.progress);
+            System.out.println("IntensityCurveStartEasing: " + screenshakeInstance.intensityCurveStartEasing.name);
+            System.out.println("IntensityCurveEndEasing: " + screenshakeInstance.intensityCurveEndEasing.name);
+        }
     }
 
     @Override
@@ -40,14 +44,16 @@ public class ScreenshakeSerializer extends Serializer<ScreenshakeInstance> {
                 .setEasing(Easing.valueOf(intensityCurveStartEasing), Easing.valueOf(intensityCurveEndEasing))
                 .setIntensity(intensity1, intensity2, intensity3);
         inst.progress = progress;
-        System.out.println("Read ScreenshakeInstance with data");
-        System.out.println("Duration: " + inst.duration);
-        System.out.println("Intensity1: " + inst.intensity1);
-        System.out.println("Intensity2: " + inst.intensity2);
-        System.out.println("Intensity3: " + inst.intensity3);
-        System.out.println("Progress: " + inst.progress);
-        System.out.println("IntensityCurveStartEasing: " + inst.intensityCurveStartEasing.name);
-        System.out.println("IntensityCurveEndEasing: " + inst.intensityCurveEndEasing.name);
+        if (debug) {
+            System.out.println("Read ScreenshakeInstance:");
+            System.out.println("Duration: " + inst.duration);
+            System.out.println("Intensity1: " + inst.intensity1);
+            System.out.println("Intensity2: " + inst.intensity2);
+            System.out.println("Intensity3: " + inst.intensity3);
+            System.out.println("Progress: " + inst.progress);
+            System.out.println("IntensityCurveStartEasing: " + inst.intensityCurveStartEasing);
+            System.out.println("IntensityCurveEndEasing: " + inst.intensityCurveEndEasing);
+        }
         return inst;
     }
 }

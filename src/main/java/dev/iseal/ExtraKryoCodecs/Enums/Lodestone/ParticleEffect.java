@@ -1,4 +1,4 @@
-package dev.iseal.Enums.Lodestone;
+package dev.iseal.ExtraKryoCodecs.Enums.Lodestone;
 
 public enum ParticleEffect {
 

@@ -1,31 +1,29 @@
-package dev.iseal.Holders;
+package dev.iseal.ExtraKryoCodecs.Holders;
 
-import dev.iseal.Enums.Lodestone.ParticleEffect;
-import io.github.fabricators_of_create.porting_lib.util.RegistryObject;
+import dev.iseal.ExtraKryoCodecs.Enums.Lodestone.ParticleEffect;
 import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.world.type.LodestoneWorldParticleType;
 
-public class WorldParticleBuilderHolder {
+public class  WorldParticleBuilderHolder {
 
-    private final RegistryObject<LodestoneWorldParticleType> type;
+    private final int type;
     private boolean noClip = false;
     private boolean forcedSpawn = false;
     private boolean shouldCull = false;
-    private double xLocation = 0;
-    private double yLocation = 0;
-    private double zLocation = 0;
-    private double maxXSpeed = 0;
-    private double maxYSpeed = 0;
-    private double maxZSpeed = 0;
-    private double xMotion = 0;
-    private double yMotion = 0;
-    private double zMotion = 0;
-    private double maxXOffset = 0;
-    private double maxYOffset = 0;
-    private double maxZOffset = 0;
+    private double xLocation = 1;
+    private double yLocation = 1;
+    private double zLocation = 1;
+    private double maxXSpeed = 1;
+    private double maxYSpeed = 1;
+    private double maxZSpeed = 1;
+    private double xMotion = 1;
+    private double yMotion = 1;
+    private double zMotion = 1;
+    private double maxXOffset = 1;
+    private double maxYOffset = 1;
+    private double maxZOffset = 1;
     private ColorParticleData colorData = ColorParticleData.create(0, 0, 0).build();
     private GenericParticleData scaleData = GenericParticleData.create(1, 0).build();
     private GenericParticleData transparencyData = GenericParticleData.create(1, 0).build();
@@ -33,15 +31,15 @@ public class WorldParticleBuilderHolder {
     private float gravityStrength = 1;
     private float frictionStrength = 1;
     private int lifetime = 20;
-    private int lifeDelay = 0;
+    private int lifeDelay = 2;
     private SimpleParticleOptions.ParticleDiscardFunctionType discardFunctionType = SimpleParticleOptions.ParticleDiscardFunctionType.NONE;
     private ParticleEffect particleEffect = ParticleEffect.SPAWN;
 
-    public WorldParticleBuilderHolder(RegistryObject<LodestoneWorldParticleType> type) {
+    public WorldParticleBuilderHolder(int type) {
         this.type = type;
     }
 
-    public RegistryObject<LodestoneWorldParticleType> getType() {
+    public int getType() {
         return type;
     }
 
