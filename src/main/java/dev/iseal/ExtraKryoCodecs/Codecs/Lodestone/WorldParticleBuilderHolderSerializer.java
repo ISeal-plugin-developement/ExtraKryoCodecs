@@ -11,13 +11,26 @@ import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 
+import java.util.Arrays;
+
 import static dev.iseal.ExtraKryoCodecs.ExtraKryoCodecs.debug;
 
 public class WorldParticleBuilderHolderSerializer extends Serializer<WorldParticleBuilderHolder> {
+
+    /**
+     * Constructs a new serializer for {@link WorldParticleBuilderHolder}.
+     */
     public WorldParticleBuilderHolderSerializer() {
         super(false, true);
     }
 
+    /**
+     * Writes the {@link WorldParticleBuilderHolder} object to the output.
+     *
+     * @param kryo the Kryo instance
+     * @param output the output to write to
+     * @param worldParticleBuilderHolder the object to serialize
+     */
     @Override
     public void write(Kryo kryo, Output output, WorldParticleBuilderHolder worldParticleBuilderHolder) {
         if (debug) {
@@ -38,10 +51,18 @@ public class WorldParticleBuilderHolderSerializer extends Serializer<WorldPartic
             System.out.println("MaxXOffset: " + worldParticleBuilderHolder.getMaxXOffset());
             System.out.println("MaxYOffset: " + worldParticleBuilderHolder.getMaxYOffset());
             System.out.println("MaxZOffset: " + worldParticleBuilderHolder.getMaxZOffset());
+            System.out.println("StartingXLocation: " + worldParticleBuilderHolder.getStartingXLocation());
+            System.out.println("StartingYLocation: " + worldParticleBuilderHolder.getStartingYLocation());
+            System.out.println("StartingZLocation: " + worldParticleBuilderHolder.getStartingZLocation());
+            System.out.println("EndingXLocation: " + worldParticleBuilderHolder.getEndingXLocation());
+            System.out.println("EndingYLocation: " + worldParticleBuilderHolder.getEndingYLocation());
+            System.out.println("EndingZLocation: " + worldParticleBuilderHolder.getEndingZLocation());
             System.out.println("GravityStrength: " + worldParticleBuilderHolder.getGravityStrength());
             System.out.println("FrictionStrength: " + worldParticleBuilderHolder.getFrictionStrength());
             System.out.println("Lifetime: " + worldParticleBuilderHolder.getLifetime());
             System.out.println("LifeDelay: " + worldParticleBuilderHolder.getLifeDelay());
+            System.out.println("RepeatCount: " + worldParticleBuilderHolder.getRepeatCount());
+            System.out.println("Directions: " + Arrays.toString(worldParticleBuilderHolder.getDirections()));
             System.out.println("ParticleEffect: " + worldParticleBuilderHolder.getParticleEffect().ordinal());
             System.out.println("DiscardFunctionType: " + worldParticleBuilderHolder.getDiscardFunctionType().ordinal());
             System.out.println("ColorData: " + worldParticleBuilderHolder.getColorData());
@@ -54,30 +75,58 @@ public class WorldParticleBuilderHolderSerializer extends Serializer<WorldPartic
         output.writeBoolean(worldParticleBuilderHolder.isNoClip());
         output.writeBoolean(worldParticleBuilderHolder.isForcedSpawn());
         output.writeBoolean(worldParticleBuilderHolder.isShouldCull());
+
         output.writeDouble(worldParticleBuilderHolder.getXLocation());
         output.writeDouble(worldParticleBuilderHolder.getYLocation());
         output.writeDouble(worldParticleBuilderHolder.getZLocation());
+
         output.writeDouble(worldParticleBuilderHolder.getMaxXSpeed());
         output.writeDouble(worldParticleBuilderHolder.getMaxYSpeed());
         output.writeDouble(worldParticleBuilderHolder.getMaxZSpeed());
+
         output.writeDouble(worldParticleBuilderHolder.getXMotion());
         output.writeDouble(worldParticleBuilderHolder.getYMotion());
         output.writeDouble(worldParticleBuilderHolder.getZMotion());
+
         output.writeDouble(worldParticleBuilderHolder.getMaxXOffset());
         output.writeDouble(worldParticleBuilderHolder.getMaxYOffset());
         output.writeDouble(worldParticleBuilderHolder.getMaxZOffset());
+
+        output.writeDouble(worldParticleBuilderHolder.getStartingXLocation());
+        output.writeDouble(worldParticleBuilderHolder.getStartingYLocation());
+        output.writeDouble(worldParticleBuilderHolder.getStartingZLocation());
+
+        output.writeDouble(worldParticleBuilderHolder.getEndingXLocation());
+        output.writeDouble(worldParticleBuilderHolder.getEndingYLocation());
+        output.writeDouble(worldParticleBuilderHolder.getEndingZLocation());
+
         output.writeFloat(worldParticleBuilderHolder.getGravityStrength());
         output.writeFloat(worldParticleBuilderHolder.getFrictionStrength());
+
         output.writeInt(worldParticleBuilderHolder.getLifetime());
         output.writeInt(worldParticleBuilderHolder.getLifeDelay());
+
+        output.writeInt(worldParticleBuilderHolder.getRepeatCount());
+        output.writeInt(worldParticleBuilderHolder.getDirections().length);
+        output.writeInts(worldParticleBuilderHolder.getDirections(), 0, worldParticleBuilderHolder.getDirections().length);
+
         output.writeInt(worldParticleBuilderHolder.getParticleEffect().ordinal());
         output.writeInt(worldParticleBuilderHolder.getDiscardFunctionType().ordinal());
+
         kryo.writeObject(output, worldParticleBuilderHolder.getColorData());
         kryo.writeObject(output, worldParticleBuilderHolder.getScaleData());
         kryo.writeObject(output, worldParticleBuilderHolder.getTransparencyData());
         kryo.writeObject(output, worldParticleBuilderHolder.getSpinData());
     }
 
+    /**
+     * Reads the {@link WorldParticleBuilderHolder} object from the input.
+     *
+     * @param kryo the Kryo instance
+     * @param input the input to read from
+     * @param aClass the class of the object to deserialize
+     * @return the deserialized {@link WorldParticleBuilderHolder} object
+     */
     @Override
     public WorldParticleBuilderHolder read(Kryo kryo, Input input, Class<? extends WorldParticleBuilderHolder> aClass) {
         int id = input.readInt();
@@ -97,10 +146,19 @@ public class WorldParticleBuilderHolderSerializer extends Serializer<WorldPartic
         double maxXOffset = input.readDouble();
         double maxYOffset = input.readDouble();
         double maxZOffset = input.readDouble();
+        double startingXLocation = input.readDouble();
+        double startingYLocation = input.readDouble();
+        double startingZLocation = input.readDouble();
+        double endingXLocation = input.readDouble();
+        double endingYLocation = input.readDouble();
+        double endingZLocation = input.readDouble();
         float gravityStrength = input.readFloat();
         float frictionStrength = input.readFloat();
         int lifetime = input.readInt();
         int lifeDelay = input.readInt();
+        int repeatCount = input.readInt();
+        int directionsLength = input.readInt();
+        int[] directions = input.readInts(directionsLength);
         int particleEffectOrdinal = input.readInt();
         int discardFunctionTypeOrdinal = input.readInt();
         ColorParticleData colorData = kryo.readObject(input, ColorParticleData.class);
@@ -126,10 +184,18 @@ public class WorldParticleBuilderHolderSerializer extends Serializer<WorldPartic
             System.out.println("MaxXOffset: " + maxXOffset);
             System.out.println("MaxYOffset: " + maxYOffset);
             System.out.println("MaxZOffset: " + maxZOffset);
+            System.out.println("StartingXLocation: " + startingXLocation);
+            System.out.println("StartingYLocation: " + startingYLocation);
+            System.out.println("StartingZLocation: " + startingZLocation);
+            System.out.println("EndingXLocation: " + endingXLocation);
+            System.out.println("EndingYLocation: " + endingYLocation);
+            System.out.println("EndingZLocation: " + endingZLocation);
             System.out.println("GravityStrength: " + gravityStrength);
             System.out.println("FrictionStrength: " + frictionStrength);
             System.out.println("Lifetime: " + lifetime);
             System.out.println("LifeDelay: " + lifeDelay);
+            System.out.println("RepeatCount: " + repeatCount);
+            System.out.println("Directions: " + Arrays.toString(directions));
             System.out.println("ParticleEffect: " + particleEffectOrdinal);
             System.out.println("DiscardFunctionType: " + discardFunctionTypeOrdinal);
             System.out.println("ColorData: " + colorData);
@@ -145,10 +211,14 @@ public class WorldParticleBuilderHolderSerializer extends Serializer<WorldPartic
                 .setRandomMotion(maxXSpeed, maxYSpeed, maxZSpeed)
                 .setMotion(xMotion, yMotion, zMotion)
                 .setRandomOffset(maxXOffset, maxYOffset, maxZOffset)
+                .setStartingLocation(startingXLocation, startingYLocation, startingZLocation)
+                .setEndingLocation(endingXLocation, endingYLocation, endingZLocation)
                 .setGravityStrength(gravityStrength)
                 .setFrictionStrength(frictionStrength)
                 .setLifetime(lifetime)
                 .setLifeDelay(lifeDelay)
+                .setRepeatCount(repeatCount)
+                .setDirections(directions)
                 .setParticleEffect(ParticleEffect.values()[particleEffectOrdinal])
                 .setDiscardFunction(SimpleParticleOptions.ParticleDiscardFunctionType.values()[discardFunctionTypeOrdinal])
                 .setColorData(colorData)

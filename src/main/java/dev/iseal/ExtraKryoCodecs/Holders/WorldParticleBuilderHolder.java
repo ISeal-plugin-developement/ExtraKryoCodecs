@@ -6,6 +6,9 @@ import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 
+import java.util.Arrays;
+import java.util.BitSet;
+
 public class  WorldParticleBuilderHolder {
 
     private final int type;
@@ -24,6 +27,14 @@ public class  WorldParticleBuilderHolder {
     private double maxXOffset = 1;
     private double maxYOffset = 1;
     private double maxZOffset = 1;
+
+    private double startingXLocation = 1;
+    private double startingYLocation = 1;
+    private double startingZLocation = 1;
+    private double endingXLocation = 1;
+    private double endingYLocation = 1;
+    private double endingZLocation = 1;
+
     private ColorParticleData colorData = ColorParticleData.create(0, 0, 0).build();
     private GenericParticleData scaleData = GenericParticleData.create(1, 0).build();
     private GenericParticleData transparencyData = GenericParticleData.create(1, 0).build();
@@ -34,6 +45,8 @@ public class  WorldParticleBuilderHolder {
     private int lifeDelay = 2;
     private SimpleParticleOptions.ParticleDiscardFunctionType discardFunctionType = SimpleParticleOptions.ParticleDiscardFunctionType.NONE;
     private ParticleEffect particleEffect = ParticleEffect.SPAWN;
+    private int repeatCount = 1;
+    private int[] directions = new int[6];
 
     public WorldParticleBuilderHolder(int type) {
         this.type = type;
@@ -185,6 +198,50 @@ public class  WorldParticleBuilderHolder {
         return this;
     }
 
+    public WorldParticleBuilderHolder setStartingLocation(double x, double y, double z) {
+        this.startingXLocation = x;
+        this.startingYLocation = y;
+        this.startingZLocation = z;
+        return this;
+    }
+
+    public WorldParticleBuilderHolder setEndingLocation(double x, double y, double z) {
+        this.endingXLocation = x;
+        this.endingYLocation = y;
+        this.endingZLocation = z;
+        return this;
+    }
+
+    public WorldParticleBuilderHolder setRepeatCount(int repeatCount) {
+        this.repeatCount = repeatCount;
+        return this;
+    }
+
+    public WorldParticleBuilderHolder addDirections(int... newDirections) {
+        BitSet directionSet = new BitSet(6);
+        for (int direction : directions) {
+            directionSet.set(direction);
+        }
+
+        for (int newDirection : newDirections) {
+            if (newDirection < 0 || newDirection > 5) {
+                throw new IllegalArgumentException("Directions must be between 0 and 5");
+            }
+            directionSet.set(newDirection);
+        }
+
+        directions = directionSet.stream().toArray();
+        return this;
+    }
+
+    public WorldParticleBuilderHolder setDirections(int... directions) {
+        // remove anything not between 0 and 5
+        if (!Arrays.stream(directions).allMatch(i -> i >= 0 && i <= 5))
+            throw new IllegalArgumentException("Directions must be between 0 and 5");
+        this.directions = directions;
+        return this;
+    }
+
     // getters
 
     public boolean isNoClip() {
@@ -285,5 +342,61 @@ public class  WorldParticleBuilderHolder {
 
     public double getZLocation() {
         return zLocation;
+    }
+
+    public double getxLocation() {
+        return xLocation;
+    }
+
+    public double getyLocation() {
+        return yLocation;
+    }
+
+    public double getzLocation() {
+        return zLocation;
+    }
+
+    public double getxMotion() {
+        return xMotion;
+    }
+
+    public double getyMotion() {
+        return yMotion;
+    }
+
+    public double getzMotion() {
+        return zMotion;
+    }
+
+    public double getStartingXLocation() {
+        return startingXLocation;
+    }
+
+    public double getStartingYLocation() {
+        return startingYLocation;
+    }
+
+    public double getStartingZLocation() {
+        return startingZLocation;
+    }
+
+    public double getEndingXLocation() {
+        return endingXLocation;
+    }
+
+    public double getEndingYLocation() {
+        return endingYLocation;
+    }
+
+    public double getEndingZLocation() {
+        return endingZLocation;
+    }
+
+    public int getRepeatCount() {
+        return repeatCount;
+    }
+
+    public int[] getDirections() {
+        return directions;
     }
 }
