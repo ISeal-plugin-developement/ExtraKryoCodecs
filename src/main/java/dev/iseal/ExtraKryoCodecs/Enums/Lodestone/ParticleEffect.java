@@ -1,5 +1,7 @@
 package dev.iseal.ExtraKryoCodecs.Enums.Lodestone;
 
+import jdk.jfr.Experimental;
+
 public enum ParticleEffect {
 
     // as for args:
@@ -12,8 +14,10 @@ public enum ParticleEffect {
     SPAWN_AT_RANDOM_FACE,
     REPEAT_AT_RANDOM_FACE,
     // TODO: implement on client
+    @Experimental
     CIRCLE,
     // TODO: implement on client
+    @Experimental
     REPEAT_CIRCLE,
 
     CREATE_BLOCK_OUTLINE,
