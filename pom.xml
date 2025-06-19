@@ -34,30 +34,6 @@
             <version>5.6.2</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>team.lodestar.lodestone</groupId>
-            <artifactId>lodestone</artifactId>
-            <version>1.20.1-1.6.2.3c-fabric</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.github.fabricators_of_create.Porting-Lib</groupId>
-            <artifactId>lazy_registration</artifactId>
-            <version>2.3.4+1.20.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
 </project>
