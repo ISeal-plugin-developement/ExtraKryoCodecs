@@ -1,6 +1,6 @@
-package dev.iseal.ExtraKryoCodecs.Holders;
+package dev.iseal.ExtraKryoCodecs.Holders.Effekts;
 
-import dev.iseal.ExtraKryoCodecs.Enums.Lodestone.ParticleEffect;
+import dev.iseal.ExtraKryoCodecs.Enums.Effekts.Lodestone.ParticleEffect;
 import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;

@@ -1,11 +1,11 @@
-package dev.iseal.ExtraKryoCodecs.Enums;
+package dev.iseal.ExtraKryoCodecs.Enums.Effekts;
 
-import dev.iseal.ExtraKryoCodecs.Holders.ScreenFlashHolder;
-import dev.iseal.ExtraKryoCodecs.Holders.WorldParticleBuilderHolder;
+import dev.iseal.ExtraKryoCodecs.Holders.Effekts.ScreenFlashHolder;
+import dev.iseal.ExtraKryoCodecs.Holders.Effekts.WorldParticleBuilderHolder;
 import team.lodestar.lodestone.systems.screenshake.ScreenshakeInstance;
 
 public enum Effekt {
-    SCREENSHAKE(ScreenshakeInstance.class),
+    SCREEN_SHAKE(ScreenshakeInstance.class),
     PARTICLE(WorldParticleBuilderHolder.class),
     SCREEN_FLASH(ScreenFlashHolder.class);
 

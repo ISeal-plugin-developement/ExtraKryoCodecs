@@ -1,4 +1,4 @@
-package dev.iseal.ExtraKryoCodecs.Holders;
+package dev.iseal.ExtraKryoCodecs.Holders.Effekts;
 
 public class ScreenFlashHolder {
     private final int duration;

@@ -1,4 +1,4 @@
-package dev.iseal.ExtraKryoCodecs.Enums.Lodestone;
+package dev.iseal.ExtraKryoCodecs.Enums.Effekts.Lodestone;
 
 import jdk.jfr.Experimental;
 

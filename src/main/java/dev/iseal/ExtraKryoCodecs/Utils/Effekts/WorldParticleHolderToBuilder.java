@@ -1,6 +1,6 @@
-package dev.iseal.ExtraKryoCodecs.Utils;
+package dev.iseal.ExtraKryoCodecs.Utils.Effekts;
 
-import dev.iseal.ExtraKryoCodecs.Holders.WorldParticleBuilderHolder;
+import dev.iseal.ExtraKryoCodecs.Holders.Effekts.WorldParticleBuilderHolder;
 
 import io.github.fabricators_of_create.porting_lib.util.RegistryObject;
 import team.lodestar.lodestone.registry.common.particle.LodestoneParticleRegistry;

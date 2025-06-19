@@ -4,7 +4,7 @@ import com.esotericsoftware.kryo.kryo5.Kryo;
 import com.esotericsoftware.kryo.kryo5.Serializer;
 import com.esotericsoftware.kryo.kryo5.io.Input;
 import com.esotericsoftware.kryo.kryo5.io.Output;
-import dev.iseal.ExtraKryoCodecs.Holders.ScreenFlashHolder;
+import dev.iseal.ExtraKryoCodecs.Holders.Effekts.ScreenFlashHolder;
 
 import static dev.iseal.ExtraKryoCodecs.ExtraKryoCodecs.debug;
 
