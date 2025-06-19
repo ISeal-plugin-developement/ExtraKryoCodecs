@@ -3,7 +3,6 @@ package dev.iseal.ExtraKryoCodecs;
 import com.esotericsoftware.kryo.kryo5.Kryo;
 import dev.iseal.ExtraKryoCodecs.Enums.Serializer;
 import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
-import dev.iseal.ExtraKryoCodecs.Utils.Effekts.WorldParticleHolderToBuilder;
 
 public class ExtraKryoCodecs {
 
@@ -45,9 +44,5 @@ public class ExtraKryoCodecs {
                 System.out.println("Ignoring...");
             }
         }
-    }
-
-    public static void initClient() {
-        WorldParticleHolderToBuilder.getInstance().initClient();
     }
 }

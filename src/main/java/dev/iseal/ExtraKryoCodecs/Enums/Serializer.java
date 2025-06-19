@@ -3,12 +3,10 @@ package dev.iseal.ExtraKryoCodecs.Enums;
 import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.AnalyticsSerializers;
 import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.PowerGemsAnalyticsSerializers;
 import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.SealLibAnalyticsSerializers;
-import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.Effekts.LodestoneSerializers;
 import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum Serializer {
 
-    LODESTONE(LodestoneSerializers.class),
     ANALYTICS_API(AnalyticsSerializers.class),
     ANALYTICS_API_POWERGEMS(PowerGemsAnalyticsSerializers.class),
     ANALYTICS_API_SEALLIB(SealLibAnalyticsSerializers.class);
