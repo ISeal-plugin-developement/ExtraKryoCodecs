@@ -28,6 +28,7 @@ jobs:
           echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
           echo "PRERELEASE=$(mvn help:evaluate -Dexpression=prerelease -q -DforceStdout)" >> $GITHUB_ENV
           echo "EXECUTE=$(mvn help:evaluate -Dexpression=execute -q -DforceStdout)" >> $GITHUB_ENV
+          echo "SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_ENV
 
       - name: Check if release exists
         id: check_release
@@ -57,7 +58,7 @@ jobs:
           name: "v${{ env.VERSION }}"
           artifacts: "target/output/*.jar"
           commit: ${{ github.event.workflow_run.head_sha }}
-          tag: "${{ env.VERSION }}-${{ github.event.workflow_run.head_sha }}"
+          tag: "${{ env.VERSION }}-${{ env.SHORT_SHA }}"
           draft: false
           prerelease: true
           body: |
