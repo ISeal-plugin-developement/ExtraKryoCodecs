@@ -7,18 +7,16 @@ import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum Serializer {
 
-    ANALYTICS_API(AnalyticsSerializers.class),
-    ANALYTICS_API_POWERGEMS(PowerGemsAnalyticsSerializers.class),
-    ANALYTICS_API_SEALLIB(SealLibAnalyticsSerializers.class);
+    ANALYTICS_API(AnalyticsSerializers.class, PowerGemsAnalyticsSerializers.class, SealLibAnalyticsSerializers.class);
 
-    private final Class<? extends Enum<?>> clazz;
+    private final Class<? extends Enum<?>>[] classes;
 
-    Serializer(Class<? extends Enum<?>> clazz) {
-        this.clazz = clazz;
+    Serializer(Class<? extends Enum<?>>... classes) {
+        this.classes = classes;
     }
 
-    public Class<? extends Enum<?>> getClazz() {
-        return clazz;
+    public Class<? extends Enum<?>>[] getClasses() {
+        return classes;
     }
 
     /**
@@ -28,11 +26,14 @@ public enum Serializer {
      * @return the serializer enum constant
      * @throws IllegalArgumentException if no serializer is found for the given ID
      */
+    @SuppressWarnings("unchecked")
     public static <T extends Enum<T> & SerializerEnum> T forPacketName(String packetName) {
         for (Serializer value : Serializer.values()) {
-            for (T serializerEnum : (T[]) value.getClazz().getEnumConstants()) {
-                if (serializerEnum.getPacketName().equals(packetName)) {
-                    return serializerEnum;
+            for (Class<? extends Enum<?>> aClass : value.getClasses()) {
+                for (Object serializerEnum : aClass.getEnumConstants()) {
+                    if (((SerializerEnum) serializerEnum).getPacketName().equals(packetName)) {
+                        return (T) serializerEnum;
+                    }
                 }
             }
         }

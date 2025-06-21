@@ -7,7 +7,7 @@ import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum PowerGemsAnalyticsSerializers implements SerializerEnum {
 
-    CONFIG_INFO(101, PGConfigInfo.class, new ConfigInfoSerializer(), "config_info");
+    CONFIG_INFO(201, PGConfigInfo.class, new ConfigInfoSerializer(), "config_info");
 
     private final int serializerID;
     private final Class<?> effectClass;

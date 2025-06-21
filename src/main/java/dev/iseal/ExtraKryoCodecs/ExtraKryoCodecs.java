@@ -12,17 +12,19 @@ public class ExtraKryoCodecs {
         System.out.println("Registering serializers...");
         debug = debugIn;
         for (Serializer serializer : Serializer.values()) {
-            System.out.println("Registering " + serializer.getClazz().getName());
-            try {
-                for (Enum<?> enumConstant : serializer.getClazz().getEnumConstants()) {
-                    System.out.println("Registering enum constant " + enumConstant.name());
-                    SerializerEnum kryoSerializer = (SerializerEnum) enumConstant;
-                    kryo.register(kryoSerializer.getEffectClass(), kryoSerializer.getSerializer(), kryoSerializer.getID());
+            for (Class<? extends Enum<?>> clazz : serializer.getClasses()) {
+                System.out.println("Registering " + clazz.getName());
+                try {
+                    for (Enum<?> enumConstant : clazz.getEnumConstants()) {
+                        System.out.println("Registering enum constant " + enumConstant.name());
+                        SerializerEnum kryoSerializer = (SerializerEnum) enumConstant;
+                        kryo.register(kryoSerializer.getEffectClass(), kryoSerializer.getSerializer(), kryoSerializer.getID());
+                    }
+                } catch (NoClassDefFoundError e) {
+                    // ignore the register
+                    System.out.println("Failed to register " + clazz.getName());
+                    System.out.println("Ignoring...");
                 }
-            } catch (NoClassDefFoundError e) {
-                // ignore the register
-                System.out.println("Failed to register " + serializer.getClazz().getName());
-                System.out.println("Ignoring...");
             }
         }
     }
@@ -31,17 +33,19 @@ public class ExtraKryoCodecs {
         System.out.println("Registering serializers...");
         debug = debugIn;
         for (Serializer serializer : toRegister) {
-            System.out.println("Registering " + serializer.getClazz().getName());
-            try {
-                for (Enum<?> enumConstant : serializer.getClazz().getEnumConstants()) {
-                    System.out.println("Registering enum constant " + enumConstant.name());
-                    SerializerEnum kryoSerializer = (SerializerEnum) enumConstant;
-                    kryo.register(kryoSerializer.getEffectClass(), kryoSerializer.getSerializer(), kryoSerializer.getID());
+            for (Class<? extends Enum<?>> clazz : serializer.getClasses()) {
+                System.out.println("Registering " + clazz.getName());
+                try {
+                    for (Enum<?> enumConstant : clazz.getEnumConstants()) {
+                        System.out.println("Registering enum constant " + enumConstant.name());
+                        SerializerEnum kryoSerializer = (SerializerEnum) enumConstant;
+                        kryo.register(kryoSerializer.getEffectClass(), kryoSerializer.getSerializer(), kryoSerializer.getID());
+                    }
+                } catch (NoClassDefFoundError e) {
+                    // ignore the register
+                    System.out.println("Failed to register " + clazz.getName());
+                    System.out.println("Ignoring...");
                 }
-            } catch (NoClassDefFoundError e) {
-                // ignore the register
-                System.out.println("Failed to register " + serializer.getClazz().getName());
-                System.out.println("Ignoring...");
             }
         }
     }
