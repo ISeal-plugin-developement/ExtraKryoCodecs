@@ -1,0 +1,82 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Set up Java environment
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+
+      - name: Set env variables
+        run: |
+          echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+          echo "PRERELEASE=$(mvn help:evaluate -Dexpression=prerelease -q -DforceStdout)" >> $GITHUB_ENV
+          echo "EXECUTE=$(mvn help:evaluate -Dexpression=execute -q -DforceStdout)" >> $GITHUB_ENV
+
+      - name: Check if release exists
+        id: check_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "v${{ env.VERSION }}" > /dev/null 2>&1; then
+            echo "RELEASE_EXISTS=true" >> $GITHUB_ENV
+          else
+            echo "RELEASE_EXISTS=false" >> $GITHUB_ENV
+          fi
+
+      - name: Stop if release exists
+        if: env.RELEASE_EXISTS == 'true'
+        run: echo "Release v${{ env.VERSION }} already exists. Stopping workflow."
+
+      - name: Run Maven package
+        if: ${{ env.EXECUTE == 'true' && env.RELEASE_EXISTS == 'false' }}
+        run: mvn clean package
+
+      - name: Create prerelease
+        if: ${{ env.EXECUTE == 'true' && env.PRERELEASE == 'true' && env.RELEASE_EXISTS == 'false' }}
+        uses: ncipollo/release-action@v1
+        id: preRelease
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: "v${{ env.VERSION }}"
+          artifacts: "target/output/*.jar"
+          commit: ${{ github.event.workflow_run.head_sha }}
+          tag: "${{ env.VERSION }}-${{ github.event.workflow_run.head_sha }}"
+          draft: false
+          prerelease: true
+          body: |
+            This release is automatically generated from commit ${{ github.event.workflow_run.head_sha }} and corresponds to version ${{ env.VERSION }} from pom.xml.
+            Changelog for this version: ${{ github.event.workflow_run.head_commit.message }}
+            !! THIS IS A PRERELEASE AND NOT FINAL !!
+
+      - name: Create release final
+        if: ${{ env.EXECUTE == 'true' && env.PRERELEASE == 'false' && env.RELEASE_EXISTS == 'false' }}
+        uses: ncipollo/release-action@v1
+        id: finalRelease
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: "v${{ env.VERSION }}"
+          artifacts: "target/output/*.jar"
+          commit: ${{ github.event.workflow_run.head_sha }}
+          tag: ${{ env.VERSION }}
+          draft: false
+          prerelease: false
+          body: |
+            This release is automatically generated from commit ${{ github.event.workflow_run.head_sha }} and corresponds to version ${{ env.VERSION }} from pom.xml.
+            Changelog for this version: ${{ github.event.workflow_run.head_commit.message }}
