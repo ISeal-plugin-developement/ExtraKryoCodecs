@@ -1,16 +1,23 @@
 package dev.iseal.ExtraKryoCodecs.Enums;
 
 import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.AnalyticsSerializers;
+import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.AuthenticationAnalyticsSerializers;
 import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.PowerGemsAnalyticsSerializers;
 import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.SealLibAnalyticsSerializers;
 import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum Serializer {
 
-    ANALYTICS_API(AnalyticsSerializers.class, PowerGemsAnalyticsSerializers.class, SealLibAnalyticsSerializers.class);
+    ANALYTICS_API(
+            AnalyticsSerializers.class,
+            AuthenticationAnalyticsSerializers.class,
+            PowerGemsAnalyticsSerializers.class,
+            SealLibAnalyticsSerializers.class
+    );
 
     private final Class<? extends Enum<?>>[] classes;
 
+    @SafeVarargs
     Serializer(Class<? extends Enum<?>>... classes) {
         this.classes = classes;
     }

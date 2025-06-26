@@ -1,20 +1,23 @@
 package dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI;
 
 import com.esotericsoftware.kryo.kryo5.Serializer;
-import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.PowerGems.ConfigInfoSerializer;
-import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.PowerGems.PGConfigInfo;
+import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.Authentication.LoginRequestSerializer;
+import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.Authentication.RegisterRequestSerializer;
+import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.Authorisation.LoginRequest;
+import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.Authorisation.RegisterRequest;
 import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
-public enum PowerGemsAnalyticsSerializers implements SerializerEnum {
+public enum AuthenticationAnalyticsSerializers implements SerializerEnum {
 
-    CONFIG_INFO(1301, PGConfigInfo.class, new ConfigInfoSerializer(), "config_info");
+    LOGIN_REQUEST(1201, LoginRequest.class, new LoginRequestSerializer(), "login_request"),
+    REGISTER_REQUEST(1202, RegisterRequest.class, new RegisterRequestSerializer(), "register_request");
 
     private final int serializerID;
     private final Class<?> effectClass;
     private final Serializer<?> serializer;
     private final String packetName;
 
-    PowerGemsAnalyticsSerializers(int serializerID, Class<?> serializedClass, Serializer<?> serializer, String packetName) {
+    AuthenticationAnalyticsSerializers(int serializerID, Class<?> serializedClass, Serializer<?> serializer, String packetName) {
         this.serializerID = serializerID;
         this.effectClass = serializedClass;
         this.serializer = serializer;

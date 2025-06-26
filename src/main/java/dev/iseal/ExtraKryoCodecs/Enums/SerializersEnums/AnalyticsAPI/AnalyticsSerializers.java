@@ -7,7 +7,7 @@ import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum AnalyticsSerializers implements SerializerEnum {
 
-    PLUGIN_VERSION_INFO(101, VersionInfo.class, new VersionInfoSerializer(), "version_info");
+    PLUGIN_VERSION_INFO(1101, VersionInfo.class, new VersionInfoSerializer(), "version_info");
 
     private final int serializerID;
     private final Class<?> effectClass;
