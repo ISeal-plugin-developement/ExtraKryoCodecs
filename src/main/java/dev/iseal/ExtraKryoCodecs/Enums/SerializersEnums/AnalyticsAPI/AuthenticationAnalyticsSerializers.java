@@ -9,7 +9,7 @@ import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum AuthenticationAnalyticsSerializers implements SerializerEnum {
 
-    LOGIN_REQUEST(1201, LoginRequest.class, new LoginRequestSerializer(), "login_request"),
+    LOGIN_REQUEST(1201, LoginRequest.class, new LoginRequestSerializer(), "login"),
     REGISTER_REQUEST(1202, RegisterRequest.class, new RegisterRequestSerializer(), "register_request");
 
     private final int serializerID;
