@@ -1,13 +1,13 @@
 package dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI;
 
 import com.esotericsoftware.kryo.kryo5.Serializer;
-import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.PowerGems.ConfigInfoSerializer;
-import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.PowerGems.PGConfigInfo;
+import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.PowerGems.PGGeneralConfigInfoSerializer;
+import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.PowerGems.PGGeneralConfigInfo;
 import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum PowerGemsAnalyticsSerializers implements SerializerEnum {
 
-    CONFIG_INFO(1301, PGConfigInfo.class, new ConfigInfoSerializer(), "config_info");
+    CONFIG_INFO(1301, PGGeneralConfigInfo.class, new PGGeneralConfigInfoSerializer(), "config_info");
 
     private final int serializerID;
     private final Class<?> effectClass;

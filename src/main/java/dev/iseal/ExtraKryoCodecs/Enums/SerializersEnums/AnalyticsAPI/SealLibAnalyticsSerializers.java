@@ -1,15 +1,11 @@
 package dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI;
 
 import com.esotericsoftware.kryo.kryo5.Serializer;
-import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.PowerGems.ConfigInfoSerializer;
-import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.SealLib.ErrorReportSerializer;
-import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.PowerGems.PGConfigInfo;
-import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.SealLib.ErrorReport;
 import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum SealLibAnalyticsSerializers implements SerializerEnum {
 
-    ERROR_REPORT(1401, ErrorReport.class, new ErrorReportSerializer(), "error_report");
+    ; // currently no serializers defined, but can be extended in the future
 
     private final int serializerID;
     private final Class<?> effectClass;

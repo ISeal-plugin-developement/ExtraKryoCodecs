@@ -1,9 +1,6 @@
 package dev.iseal.ExtraKryoCodecs.Enums;
 
-import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.AnalyticsSerializers;
-import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.AuthenticationAnalyticsSerializers;
-import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.PowerGemsAnalyticsSerializers;
-import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.SealLibAnalyticsSerializers;
+import dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI.*;
 import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum Serializer {
@@ -12,7 +9,8 @@ public enum Serializer {
             AnalyticsSerializers.class,
             AuthenticationAnalyticsSerializers.class,
             PowerGemsAnalyticsSerializers.class,
-            SealLibAnalyticsSerializers.class
+            SealLibAnalyticsSerializers.class,
+            SealUtilsAnalyticsSerializers.class
     );
 
     private final Class<? extends Enum<?>>[] classes;
