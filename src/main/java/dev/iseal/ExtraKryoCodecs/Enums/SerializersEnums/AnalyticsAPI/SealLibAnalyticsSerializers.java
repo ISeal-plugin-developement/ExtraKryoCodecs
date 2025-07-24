@@ -1,11 +1,13 @@
 package dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI;
 
 import com.esotericsoftware.kryo.kryo5.Serializer;
+import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.SealLib.AverageTPSSerializer;
+import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.SealLib.AverageTPS;
 import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum SealLibAnalyticsSerializers implements SerializerEnum {
 
-    ; // currently no serializers defined, but can be extended in the future
+    AVERAGE_TPS(1401, AverageTPS.class, new AverageTPSSerializer(), "average_tps");
 
     private final int serializerID;
     private final Class<?> effectClass;

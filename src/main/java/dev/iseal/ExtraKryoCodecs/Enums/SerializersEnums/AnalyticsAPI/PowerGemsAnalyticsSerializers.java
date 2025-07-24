@@ -1,13 +1,16 @@
 package dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI;
 
 import com.esotericsoftware.kryo.kryo5.Serializer;
-import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.PowerGems.PGGeneralConfigInfoSerializer;
-import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.PowerGems.PGGeneralConfigInfo;
+import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.PowerGems.AddonsLoadedSerializer;
+import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.PowerGems.GemUsagesHourlySerializer;
+import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.PowerGems.PGAddonsLoaded;
+import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.PowerGems.PGGemUsagesHourly;
 import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum PowerGemsAnalyticsSerializers implements SerializerEnum {
 
-    CONFIG_INFO(1301, PGGeneralConfigInfo.class, new PGGeneralConfigInfoSerializer(), "config_info");
+    GEM_USAGES(1301, PGGemUsagesHourly.class, new GemUsagesHourlySerializer(), "gem_usages_hourly"),
+    ADDONS_LOADED(1311, PGAddonsLoaded.class, new AddonsLoadedSerializer(), "addons_loaded");
 
     private final int serializerID;
     private final Class<?> effectClass;

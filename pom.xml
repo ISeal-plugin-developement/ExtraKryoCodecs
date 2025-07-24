@@ -6,7 +6,7 @@
 
     <groupId>dev.iseal</groupId>
     <artifactId>ExtraKryoCodecs</artifactId>
-    <version>1.0.0.0-DEV24</version>
+    <version>1.1.0.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -15,6 +15,17 @@
         <prerelease>true</prerelease>
         <execute>true</execute>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>iseal.dev</id>
+            <url>https://maven.iseal.dev/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>iseal.dev</id>
+            <url>https://maven.iseal.dev/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <build>
         <plugins>

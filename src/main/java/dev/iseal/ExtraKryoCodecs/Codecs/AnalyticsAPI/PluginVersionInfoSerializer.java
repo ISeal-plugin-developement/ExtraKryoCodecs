@@ -13,6 +13,9 @@ public class PluginVersionInfoSerializer extends Serializer<PluginVersionInfo> {
         output.writeString(object.serverVersion());
         output.writeString(object.serverSoftware());
         output.writeString(object.serverJavaVersion());
+        output.writeString(object.serverOS());
+        output.writeString(object.serverOSVersion());
+        output.writeString(object.serverArchitecture());
     }
 
     @Override
@@ -21,6 +24,10 @@ public class PluginVersionInfoSerializer extends Serializer<PluginVersionInfo> {
         String serverVersion = input.readString();
         String serverSoftware = input.readString();
         String serverJavaVersion = input.readString();
-        return new PluginVersionInfo(pluginVersion, serverVersion, serverSoftware, serverJavaVersion);
+        String serverOS = input.readString();
+        String serverOSVersion = input.readString();
+        String serverArchitecture = input.readString();
+        return new PluginVersionInfo(pluginVersion, serverVersion, serverSoftware, serverJavaVersion,
+                                     serverOS, serverOSVersion, serverArchitecture);
     }
 }
