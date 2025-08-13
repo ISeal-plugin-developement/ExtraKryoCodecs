@@ -7,7 +7,7 @@ import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum SealUtilsAnalyticsSerializers implements SerializerEnum {
 
-    ERROR_REPORT(1501, ErrorReport.class, new ErrorReportSerializer(), "error_report");
+    ERROR_REPORT(1601, ErrorReport.class, new ErrorReportSerializer(), "error_report");
 
     private final int serializerID;
     private final Class<?> effectClass;

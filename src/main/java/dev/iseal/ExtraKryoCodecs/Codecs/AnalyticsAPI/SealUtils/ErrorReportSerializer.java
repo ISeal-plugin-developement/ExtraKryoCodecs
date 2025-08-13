@@ -6,6 +6,8 @@ import com.esotericsoftware.kryo.kryo5.io.Input;
 import com.esotericsoftware.kryo.kryo5.io.Output;
 import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.SealUtils.ErrorReport;
 
+import java.time.Instant;
+import java.time.InstantSource;
 import java.util.Date;
 import java.util.logging.Level;
 
@@ -15,7 +17,7 @@ public class ErrorReportSerializer extends Serializer<ErrorReport> {
         output.writeString(object.reporterVersion());
         output.writeString(object.errorMessage());
         output.writeString(object.responsibleClass());
-        output.writeLong(object.timestamp().getTime());
+        output.writeLong(object.timestamp().toEpochMilli());
         output.writeString(object.level().getName());
     }
 
@@ -25,7 +27,7 @@ public class ErrorReportSerializer extends Serializer<ErrorReport> {
         String errorMessage = input.readString();
         String responsibleClass = input.readString();
         long timestampMillis = input.readLong();
-        Date timestamp = new Date(timestampMillis);
+        Instant timestamp = Instant.ofEpochMilli(timestampMillis);
         String levelName = input.readString();
         Level level = Level.parse(levelName);
 

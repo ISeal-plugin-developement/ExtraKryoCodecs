@@ -9,8 +9,8 @@ import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
 public enum PowerGemsAnalyticsSerializers implements SerializerEnum {
 
-    GEM_USAGES(1301, PGGemUsagesHourly.class, new GemUsagesHourlySerializer(), "gem_usages_hourly"),
-    ADDONS_LOADED(1311, PGAddonsLoaded.class, new AddonsLoadedSerializer(), "addons_loaded");
+    GEM_USAGES(1401, PGGemUsagesHourly.class, new GemUsagesHourlySerializer(), "gem_usages"),
+    ADDONS_LOADED(1411, PGAddonsLoaded.class, new AddonsLoadedSerializer(), "addons_loaded");
 
     private final int serializerID;
     private final Class<?> effectClass;

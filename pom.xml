@@ -6,7 +6,7 @@
 
     <groupId>dev.iseal</groupId>
     <artifactId>ExtraKryoCodecs</artifactId>
-    <version>1.1.0.0</version>
+    <version>1.1.0.2</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -62,8 +62,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.esotericsoftware.kryo</groupId>
-            <artifactId>kryo5</artifactId>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
             <version>5.6.2</version>
             <scope>compile</scope>
         </dependency>

@@ -8,6 +8,7 @@ public enum Serializer {
     ANALYTICS_API(
             AnalyticsSerializers.class,
             AuthenticationAnalyticsSerializers.class,
+            PerformanceAnalyticsSerializers.class,
             PowerGemsAnalyticsSerializers.class,
             SealLibAnalyticsSerializers.class,
             SealUtilsAnalyticsSerializers.class

@@ -1,20 +1,20 @@
 package dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI;
 
 import com.esotericsoftware.kryo.kryo5.Serializer;
-import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.SealLib.AverageTPSSerializer;
-import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.SealLib.AverageTPS;
+import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.Performance.PerfManagerDurationsSerializer;
+import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.Performance.PerfManagerDurations;
 import dev.iseal.ExtraKryoCodecs.Utils.SerializerEnum;
 
-public enum SealLibAnalyticsSerializers implements SerializerEnum {
+public enum PerformanceAnalyticsSerializers implements SerializerEnum {
 
-    AVERAGE_TPS(1501, AverageTPS.class, new AverageTPSSerializer(), "average_tps");
+    PERF_MANAGER_DURATIONS(1301, PerfManagerDurations.class, new PerfManagerDurationsSerializer(), "perf_manager_durations");
 
     private final int serializerID;
     private final Class<?> effectClass;
     private final Serializer<?> serializer;
     private final String packetName;
 
-    SealLibAnalyticsSerializers(int serializerID, Class<?> serializedClass, Serializer<?> serializer, String packetName) {
+    PerformanceAnalyticsSerializers(int serializerID, Class<?> serializedClass, Serializer<?> serializer, String packetName) {
         this.serializerID = serializerID;
         this.effectClass = serializedClass;
         this.serializer = serializer;
