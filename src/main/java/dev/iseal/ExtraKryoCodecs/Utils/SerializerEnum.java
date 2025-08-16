@@ -1,6 +1,6 @@
 package dev.iseal.ExtraKryoCodecs.Utils;
 
-import com.esotericsoftware.kryo.kryo5.Serializer;
+import com.esotericsoftware.kryo.Serializer;
 
 public interface SerializerEnum {
 

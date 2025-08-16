@@ -1,6 +1,6 @@
 package dev.iseal.ExtraKryoCodecs.Enums.SerializersEnums.AnalyticsAPI;
 
-import com.esotericsoftware.kryo.kryo5.Serializer;
+import com.esotericsoftware.kryo.Serializer;
 import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.ProgramVersionInfoSerializer;
 import dev.iseal.ExtraKryoCodecs.Codecs.AnalyticsAPI.PluginVersionInfoSerializer;
 import dev.iseal.ExtraKryoCodecs.Holders.AnalyticsAPI.ProgramVersionInfo;
