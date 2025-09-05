@@ -29,7 +29,7 @@ public class PluginVersionInfoSerializer extends Serializer<PluginVersionInfo> {
         String serverOS = input.readString();
         String serverOSVersion = input.readString();
         String serverArchitecture = input.readString();
-        return new PluginVersionInfo(pluginVersion, serverVersion, serverMinecraftVersion, serverSoftware, serverJavaVersion,
+        return new PluginVersionInfo(pluginVersion, serverMinecraftVersion, serverVersion, serverSoftware, serverJavaVersion,
                                      serverOS, serverOSVersion, serverArchitecture);
     }
 }
