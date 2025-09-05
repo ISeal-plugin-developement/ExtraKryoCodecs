@@ -10,8 +10,8 @@ public class PluginVersionInfoSerializer extends Serializer<PluginVersionInfo> {
     @Override
     public void write(Kryo kryo, Output output, PluginVersionInfo object) {
         output.writeString(object.pluginVersion());
-        output.writeString(object.serverVersion());
         output.writeString(object.serverMinecraftVersion());
+        output.writeString(object.serverVersion());
         output.writeString(object.serverSoftware());
         output.writeString(object.serverJavaVersion());
         output.writeString(object.serverOS());
@@ -22,8 +22,8 @@ public class PluginVersionInfoSerializer extends Serializer<PluginVersionInfo> {
     @Override
     public PluginVersionInfo read(Kryo kryo, Input input, Class<? extends PluginVersionInfo> type) {
         String pluginVersion = input.readString();
-        String serverVersion = input.readString();
         String serverMinecraftVersion = input.readString();
+        String serverVersion = input.readString();
         String serverSoftware = input.readString();
         String serverJavaVersion = input.readString();
         String serverOS = input.readString();
